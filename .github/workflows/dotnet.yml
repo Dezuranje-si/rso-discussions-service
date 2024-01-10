@@ -21,7 +21,7 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v4
       with:
-        context: RSODiscussionMicroServiceAPI/
+        context: RSODiscussionMicroServiceAPI/RSODiscussionMicroServiceAPI
         push: true
         tags: muchacho3alex/rsodiscussionservice:latest
         file: RSODiscussionMicroServiceAPI/RSODiscussionMicroService/Dockerfile

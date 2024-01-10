@@ -1,6 +1,6 @@
 ﻿namespace RSO.Core.Configurations;
 
-public class UserServicesSettingsConfiguration
+public class DiscussionServicesSettingsConfiguration
 {
     /// <summary>
     /// Example.

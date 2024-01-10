@@ -8,19 +8,18 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["RSODiscussionMicroService/RSODiscussionMicroService.csproj", "RSODiscussionMicroService/"]
+COPY ["RSODiscussionMicroServiceAPI/RSODiscussionMicroServiceAPI.csproj", "RSODiscussionMicroServiceAPI/"]
 COPY ["RSO.Core/RSO.Core.csproj", "RSO.Core/"]
-RUN dotnet restore "./RSODiscussionMicroService/./RSODiscussionMicroService.csproj"
+RUN dotnet restore "./RSODiscussionMicroServiceAPI/./RSODiscussionMicroServiceAPI.csproj"
 COPY . .
-WORKDIR "/src/RSODiscussionMicroService"
-RUN dotnet build "./RSODiscussionMicroService.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/RSODiscussionMicroServiceAPI"
+RUN dotnet build "./RSODiscussionMicroServiceAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./RSODiscussionMicroService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./RSODiscussionMicroServiceAPI.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENV ASPNETCORE_ENVIRONMENT Release
-ENTRYPOINT ["dotnet", "RSODiscussionMicroService.dll", "--environment=Release"]
+ENTRYPOINT ["dotnet", "RSODiscussionMicroServiceAPI.dll"]

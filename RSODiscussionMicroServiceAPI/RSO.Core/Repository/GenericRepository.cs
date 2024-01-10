@@ -2,7 +2,7 @@
 using RSO.Core.UserModels;
 using System.Linq.Expressions;
 
-namespace UserServiceRSO.Repository;
+namespace RSO.Core.Repository;
 
 /// <summary>
 /// Implements the <see cref="IGenericRepository{T}"/> interface.
@@ -10,13 +10,13 @@ namespace UserServiceRSO.Repository;
 /// <typeparam name="T">Type of database generated object by the EF Core Power tools.</typeparam>
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
-    protected readonly UserServicesRSOContext _context;
+    protected readonly DiscussionServicesRSOContext _context;
 
     /// <summary>
     /// Constructor for the <see cref="GenericRepository{T}"/> class.
     /// </summary>
-    /// <param name="context">The <see cref="UserServicesRSOContext"/> context from the database access.</param>
-    protected GenericRepository(UserServicesRSOContext context) { _context = context; }
+    /// <param name="context">The <see cref="DiscussionServicesRSOContext"/> context from the database access.</param>
+    protected GenericRepository(DiscussionServicesRSOContext context) { _context = context; }
 
     /// <inheritdoc/>
     public async Task<IEnumerable<T>> GetAllAsync() => await _context.Set<T>().ToListAsync();

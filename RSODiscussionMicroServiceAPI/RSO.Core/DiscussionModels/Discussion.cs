@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace RSO.Core.UserModels;
 
-public partial class User
+public partial class Discussion
 {
     [Key]
     public int UserId { get; set; }

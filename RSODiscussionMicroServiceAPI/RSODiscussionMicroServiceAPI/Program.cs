@@ -8,7 +8,6 @@ using RSO.Core.Configurations;
 using RSO.Core.Repository;
 using RSO.Core.UserModels;
 using System.Text;
-using UserServiceRSO.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,7 +29,7 @@ builder.Services.AddLazyCache();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IDiscussionRepository, DiscussionRepository>(); //In each microservice a different repository/serice is inlcuded. If more tables are needed add more repos related to the microservice.
-builder.Services.AddScoped<IDiscussionLogic, DiscussionLogic>(); //In each microservice a different repository/serice is inlcuded.*/
+//builder.Services.AddScoped<IDiscussionLogic, DiscussionLogic>(); //In each microservice a different repository/serice is inlcuded.*/
 
 // JWT
 var jwtSecurityConfig = builder.Configuration.GetSection("JwtSecurityTokenConfiguration").Get<JwtSecurityTokenConfiguration>();
@@ -65,7 +64,7 @@ builder.Services.AddOpenApiDocument(options =>
         document.Info = new()
         {
             Version = "v1",
-            Title = "Discussions microservices API",
+            Title = "Discussion microservices API",
             Description = "DiscussionLogic microservices API endpoints",
             TermsOfService = "Lol.",
             Contact = new()
@@ -88,7 +87,7 @@ app.UseOpenApi();
 app.UseSwaggerUi3(options =>
 {
     options.Path = "/openapi";
-    options.TagsSorter = "Discussions";
+    options.TagsSorter = "Discussion";
 });
 app.UseAuthentication();
 app.UseAuthorization();

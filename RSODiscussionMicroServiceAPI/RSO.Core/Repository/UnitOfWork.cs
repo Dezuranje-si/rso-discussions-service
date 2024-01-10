@@ -1,32 +1,31 @@
-﻿using RSO.Core.Repository;
-using RSO.Core.UserModels;
+﻿using RSO.Core.UserModels;
 
-namespace UserServiceRSO.Repository;
+namespace RSO.Core.Repository;
 
 /// <summary>
 /// Implements the <see cref="IUnitOfWork"/> interface.
 /// </summary>
 public class UnitOfWork : IUnitOfWork
 {
-    private readonly UserServicesRSOContext _userServicesContext;
+    private readonly DiscussionServicesRSOContext _discussionServicesContext;
     private bool disposed;
 
     /// <summary>
     /// Constructor for the <see cref="UnitOfWork"/> class.
     /// </summary>
-    /// <param name="adServicesRSOContext ">The <see cref="userServicesRSOContext "/> context for the database access.</param>
-    /// <param name="userRepository">IUserRepository instance.</param>
-    public UnitOfWork(UserServicesRSOContext adServicesRSOContext, IUserRepository userRepository)
+    /// <param name="discussionServicesRSOContext ">The <see cref="userServicesRSOContext "/> context for the database access.</param>
+    /// <param name="discussionRepository">IDiscussionRepository instance.</param>
+    public UnitOfWork(DiscussionServicesRSOContext discussionServicesRSOContext, IDiscussionRepository discussionRepository)
     {
-        _userServicesContext = adServicesRSOContext;
-        UserRepository = userRepository;
+        _discussionServicesContext = discussionServicesRSOContext;
+        DiscussionRepository = discussionRepository;
     }
 
     ///<inheritdoc/>
-    public IUserRepository UserRepository { get; }
+    public IDiscussionRepository DiscussionRepository { get; }
 
     ///<inheritdoc/>
-    public async Task<int> SaveChangesAsync() => await _userServicesContext.SaveChangesAsync();
+    public async Task<int> SaveChangesAsync() => await _discussionServicesContext.SaveChangesAsync();
 
     /// <summary>
     /// Implements the <see cref="IDisposable"/> interface. Called when we'd like to the dispose the <see cref="UnitOfWork"/> object.
@@ -38,7 +37,7 @@ public class UnitOfWork : IUnitOfWork
         {
             if (disposing)
             {
-                _userServicesContext.Dispose();
+                _discussionServicesContext.Dispose();
             }
         }
         disposed = true;

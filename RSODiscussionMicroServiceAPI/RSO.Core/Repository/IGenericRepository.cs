@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace UserServiceRSO.Repository;
+namespace RSO.Core.Repository;
 
 /// <summary>
 /// Handles the basic CRUD operations.

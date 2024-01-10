@@ -24,4 +24,4 @@ jobs:
         context: RSODiscussionMicroServiceAPI/RSODiscussionMicroServiceAPI
         push: true
         tags: muchacho3alex/rsodiscussionservice:latest
-        file: RSODiscussionMicroServiceAPI/RSODiscussionMicroService/Dockerfile
+        file: RSODiscussionMicroServiceAPI/RSODiscussionMicroServiceAPI/Dockerfile

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Carter" Version="7.2.0" />
+    <PackageReference Include="HotChocolate.Types" Version="13.8.1" />
     <PackageReference Include="LazyCache" Version="2.4.0" />
     <PackageReference Include="LazyCache.AspNetCore" Version="2.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.14" />
@@ -21,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\rso-user-service\RSOUserMicroServiceAPI\RSO.Core\RSO.Core.csproj" />
+    <ProjectReference Include="..\RSO.Core\RSO.Core.csproj" />
   </ItemGroup>
 
 </Project>

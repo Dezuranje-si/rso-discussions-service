@@ -6,18 +6,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace RSO.Core.UserModels;
 
-public partial class UserServicesRSOContext : DbContext
+public partial class DiscussionServicesRSOContext : DbContext
 {
-    public UserServicesRSOContext(DbContextOptions<UserServicesRSOContext> options)
+    public DiscussionServicesRSOContext(DbContextOptions<DiscussionServicesRSOContext> options)
         : base(options)
     {
     }
 
-    public virtual DbSet<User> User { get; set; }
+    public virtual DbSet<Discussion> User { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<User>(entity =>
+        modelBuilder.Entity<Discussion>(entity =>
         {
             entity.HasKey(e => e.UserId).HasName("commerceuser_pkey");
 

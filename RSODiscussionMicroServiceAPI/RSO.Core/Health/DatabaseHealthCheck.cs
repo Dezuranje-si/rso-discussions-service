@@ -6,9 +6,9 @@ namespace RSO.Core.Health;
 
 public class DatabaseHealthCheck : IHealthCheck
 {
-    private readonly UserServicesRSOContext _context;
+    private readonly DiscussionServicesRSOContext _context;
 
-    public DatabaseHealthCheck(UserServicesRSOContext context)
+    public DatabaseHealthCheck(DiscussionServicesRSOContext context)
     {
         _context = context;
     }

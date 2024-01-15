@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using RSO.Core.UserModels;
+using RSO.Core.DiscussionModels;
+
 
 namespace RSO.Core.Health;
 

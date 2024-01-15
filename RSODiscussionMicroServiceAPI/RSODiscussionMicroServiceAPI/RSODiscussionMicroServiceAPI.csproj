@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>45122c7c-4675-4dfd-af05-24a3a30bf65b</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <PackageReference Include="Carter" Version="7.2.0" />
+    <!--<PackageReference Include="GraphQL.Server.Transports.AspNetCore" Version="7.6.0" />-->
+    <PackageReference Include="HotChocolate.AspNetCore" Version="13.8.1" />
     <PackageReference Include="HotChocolate.Types" Version="13.8.1" />
     <PackageReference Include="LazyCache" Version="2.4.0" />
     <PackageReference Include="LazyCache.AspNetCore" Version="2.4.0" />

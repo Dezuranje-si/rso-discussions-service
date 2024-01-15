@@ -2,38 +2,18 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
-namespace RSO.Core.UserModels;
+namespace RSO.Core.DiscussionModels;
 
 public partial class Discussion
 {
-    [Key]
+    public int DiscussionId { get; set; }
+
     public int UserId { get; set; }
 
-    [Required]
-    [StringLength(100)]
-    public string UserName { get; set; }
+    public int AddId { get; set; }
 
-    [Required]
-    [StringLength(200)]
-    public string UserEmail { get; set; }
+    public string DiscussionText { get; set; }
 
-    [Required]
-    [StringLength(300)]
-    public string UserPassword { get; set; }
-
-    [Required]
-    [StringLength(300)]
-    public string UserAddress { get; set; }
-
-    [StringLength(5)]
-    public string UserZipCode { get; set; }
-
-    [StringLength(100)]
-    public string UserCity { get; set; }
-
-    public DateTime? RegisteredOn { get; set; }
+    public DateTime? PublishedOn { get; set; }
 }

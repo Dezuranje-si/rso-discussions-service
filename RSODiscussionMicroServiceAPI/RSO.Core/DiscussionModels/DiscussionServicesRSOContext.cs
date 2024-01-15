@@ -4,26 +4,32 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace RSO.Core.UserModels;
+namespace RSO.Core.DiscussionModels;
 
 public partial class DiscussionServicesRSOContext : DbContext
 {
+    public DiscussionServicesRSOContext()
+    {
+    }
+
     public DiscussionServicesRSOContext(DbContextOptions<DiscussionServicesRSOContext> options)
         : base(options)
     {
     }
 
-    public virtual DbSet<Discussion> User { get; set; }
+    public virtual DbSet<Discussion> Discussions { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Discussion>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("commerceuser_pkey");
+            entity.HasKey(e => e.DiscussionId).HasName("discussionid_pkey");
 
-            entity.Property(e => e.UserId).UseIdentityAlwaysColumn();
-            entity.Property(e => e.UserCity).HasDefaultValueSql("'Ljubljana'::character varying");
-            entity.Property(e => e.UserZipCode).HasDefaultValueSql("'1000'::character varying");
+            entity.ToTable("Discussion");
+
+            entity.Property(e => e.DiscussionId).UseIdentityAlwaysColumn();
+            entity.Property(e => e.DiscussionText).IsRequired();
+            entity.Property(e => e.PublishedOn).HasDefaultValueSql("CURRENT_TIMESTAMP");
         });
 
         OnModelCreatingPartial(modelBuilder);

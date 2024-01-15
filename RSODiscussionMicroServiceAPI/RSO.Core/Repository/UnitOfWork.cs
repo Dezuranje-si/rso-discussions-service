@@ -1,4 +1,4 @@
-﻿using RSO.Core.UserModels;
+﻿using RSO.Core.DiscussionModels;
 
 namespace RSO.Core.Repository;
 

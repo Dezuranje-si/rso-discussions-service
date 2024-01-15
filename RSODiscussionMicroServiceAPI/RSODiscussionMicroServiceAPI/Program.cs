@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using RSO.Core.BL;
 using RSO.Core.Configurations;
+using RSO.Core.DiscussionModels;
 using RSO.Core.Repository;
-using RSO.Core.UserModels;
+using RSODiscussionMicroServiceAPI.GraphQL;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +16,8 @@ builder.Services.AddOptions<DiscussionServicesSettingsConfiguration>()
     .BindConfiguration("DiscussionServicesSettingsConfiguration");
 //Explicitly register the settings objects by delegating to the IOptions object.
 builder.Services.AddSingleton(resolver => resolver.GetRequiredService<IOptions<DiscussionServicesSettingsConfiguration>>().Value);
+
+builder.Services.AddGraphQLServer().AddQueryType(q => q.Name("Query")).AddType<DiscussionQueryResolver>();
 
 // Database connection
 builder.Services.AddDbContext<DiscussionServicesRSOContext>(options =>
@@ -64,7 +66,7 @@ builder.Services.AddOpenApiDocument(options =>
         document.Info = new()
         {
             Version = "v1",
-            Title = "Discussion microservices API",
+            Title = "DiscussionCodeFirst microservices API",
             Description = "DiscussionLogic microservices API endpoints",
             TermsOfService = "Lol.",
             Contact = new()
@@ -78,6 +80,7 @@ builder.Services.AddOpenApiDocument(options =>
 });
 // APP.
 var app = builder.Build();
+app.MapGraphQL();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
@@ -87,8 +90,9 @@ app.UseOpenApi();
 app.UseSwaggerUi3(options =>
 {
     options.Path = "/openapi";
-    options.TagsSorter = "Discussion";
+    options.TagsSorter = "DiscussionCodeFirst";
 });
+
 app.UseAuthentication();
 app.UseAuthorization();
 

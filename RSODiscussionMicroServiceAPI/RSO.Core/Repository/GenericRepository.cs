@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RSO.Core.UserModels;
+using RSO.Core.DiscussionModels;
 using System.Linq.Expressions;
 
 namespace RSO.Core.Repository;

@@ -10,17 +10,15 @@ namespace RSO.Core.BL;
 public class DiscussionLogic : IDiscussionLogic
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly JwtSecurityTokenConfiguration _jwtConfiguration;
+    //private readonly JwtSecurityTokenConfiguration _jwtConfigurtion;
 
     /// <summary>
     /// Initializes the <see cref="DiscussionLogic"/> class.
     /// </summary>
     /// <param name="unitOfWork"><see cref="IUnitOfWork"/> instance.</param>
-    /// <param name="jwtConfiguration"><see cref="JwtSecurityTokenConfiguration"/> dependency injection.</param>
-    public DiscussionLogic(IUnitOfWork unitOfWork, JwtSecurityTokenConfiguration jwtConfiguration)
+    public DiscussionLogic(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
-        _jwtConfiguration = jwtConfiguration;
     }
 
     ///<inheritdoc/>
@@ -76,6 +74,33 @@ public class DiscussionLogic : IDiscussionLogic
         catch (Exception ex)
         {
             return null;
+        }
+    }
+
+    public async Task<List<Discussion>> GetDiscussionAsyncByAdIdAsync(int adId)
+    {
+        try
+        {
+            var discussions = await _unitOfWork.DiscussionRepository.GetAllAsync();
+            return discussions.Where(d => d.AddId == adId).ToList();
+        }
+        catch (Exception ex)
+        {
+            return Enumerable.Empty<Discussion>().ToList();
+        }
+    }
+
+    ///<inheritdoc/>
+    public async Task<List<Discussion>> GetDiscussionsByUserIdAsync(int userId)
+    {
+        try
+        {
+            var discussions = await _unitOfWork.DiscussionRepository.GetAllAsync();
+            return discussions.Where(d => d.UserId == userId).ToList();
+        }
+        catch (Exception ex)
+        {
+            return Enumerable.Empty<Discussion>().ToList();
         }
     }
 

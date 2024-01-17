@@ -6,13 +6,11 @@ namespace RSODiscussionMicroServiceAPI.GraphQL;
 [ExtendObjectType("Query")]
 public class DiscussionQueryResolver
 {
-    public async Task<Discussion> GetDiscussionAsync([Service] IDiscussionLogic discussionLogic, int id)
-    {
-        return await discussionLogic.GetDiscussionAsync(id);
-    }
+    public async Task<Discussion> GetDiscussionAsync(int id, IDiscussionLogic discussionLogic) => await discussionLogic.GetDiscussionAsync(id);
 
-    public async Task<List<Discussion>> GetAllDiscussionsAsync([Service] IDiscussionLogic discussionLogic)
-    {
-        return await discussionLogic.GetAllDiscussionsAsync();
-    }
+    //public async Task<List<Discussion>> GetAllDiscussionsAsync(IDiscussionLogic discussionLogic) => await discussionLogic.GetAllDiscussionsAsync();
+
+    //public async Task<List<Discussion>> GetDiscussionsByUserIdAsync(IDiscussionLogic discussionLogic, int userId) => await discussionLogic.GetDiscussionsByUserIdAsync(userId);
+
+    //public async Task<List<Discussion>> GetDiscussionsByAdAsync(IDiscussionLogic discussionLogic, int adId) => await discussionLogic.GetDiscussionAsyncByAdIdAsync(adId);
 }

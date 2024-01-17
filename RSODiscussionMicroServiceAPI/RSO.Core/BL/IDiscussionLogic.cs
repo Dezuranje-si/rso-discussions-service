@@ -42,4 +42,17 @@ public interface IDiscussionLogic
     /// <returns></returns>
     public Task<List<Discussion>> GetAllDiscussionsAsync();
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    public Task<List<Discussion>> GetDiscussionsByUserIdAsync(int userId);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="adId"></param>
+    /// <returns></returns>
+    Task<List<Discussion>> GetDiscussionAsyncByAdIdAsync(int adId);
 }
